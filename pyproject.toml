@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "mnist-warmup"
+version = "0.1.0"
+description = "A small set of ML experiments on the mnist dataset."
+authors = ["Abbas Shikari"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
