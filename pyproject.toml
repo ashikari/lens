@@ -32,4 +32,4 @@ lintfix = "ruff check --fix ."
 format = "ruff format ."
 
 [tool.poe.tasks.fix]
-sequence = ["lintfix", "format"]
+sequence = ["format", "lintfix"]

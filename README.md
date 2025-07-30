@@ -1,21 +1,33 @@
 # mnist_warmup
 Brushing off the rust on my bare bones ML modeling with some MNIST experiments.
 
+# Experiment Plan
+ - MNIST trained with Neural Network to find the best configuration of a CNN
+ - MNIST Trained w/ Partial Dataset Labels
+ - MNIST trained w/ Parital Dataset Labels + Psuedo Labels
+ - MNIST VAE trained on Full Dataset (Frozen) + Fine Tune on Parital Dataset Labels
+ - MNIST VAE Trained on Full Dataset + Fine Tune on Partial Dataset Labels
 
 # TODO:
-- [] update how to use with actual commands
-- [] Add experiment outline
-- []
+- [] Load MNIST
+- [] Visualize MNIST
+- [] Train CNN on MNIST Full
+- [] Incorporate W&B
+- [] Partition MNIST Training (static)
+- [] Build multi-training loop for psuedo labels
+- [] Build VAE for MNIST reconstruction
+- [] Build Encoder fine tuning pipeline
+- [] Finalize results in W&B
 
+## 🛠️ Project Tooling
 
-# Basic Infra
- - Dependency management: Poetry
- - using poe the poet for task runner
+- **Dependency Management:** [Poetry](https://python-poetry.org/)
+- **Task Runner:** [Poe the Poet](https://github.com/nat-n/poethepoet)
 
 
 # How to use
  - all commands can be found in pyproject.toml
  - visualize data: 
- - train a model
- - Compare multiple models
+ - train a model:
+ - Compare multiple models:
  
