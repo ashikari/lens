@@ -7,6 +7,10 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+jupyter = "^1.1.1"
+jupyterlab = "^4.4.5"
+matplotlib = "^3.10.5"
+nbstripout = "^0.8.1"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -30,6 +34,8 @@ ignore = ["D100", "D104"]
 lint = "ruff check ."
 lintfix = "ruff check --fix ."
 format = "ruff format ."
+jupyter = "jupyter notebook"
+jupyterlab = "jupyter lab"
 
 [tool.poe.tasks.fix]
 sequence = ["format", "lintfix"]

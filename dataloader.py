@@ -1,6 +1,7 @@
 import torch
-import torchvision
-from torch.utils.data import Dataloader, Subset
+from torchvision.datasets import MNIST
+import torchvision.transforms as transforms
+from torch.utils.data import DataLoader, Subset
 
 
 def get_mnist_dataloader(
@@ -9,12 +10,12 @@ def get_mnist_dataloader(
     num_workers: int = 0,
     labeled=True,
     unlabeled_fraction: float = 0.0,
-) -> Dataloader:
-    raw_dataset = torchvision.datasets.MNIST(
+) -> DataLoader:
+    raw_dataset = MNIST(
         root="./data",
         download=True,
         train=train,
-        transform=torchvision.transforms.ToTensor,
+        transform=transforms.ToTensor(),
     )
     if unlabeled_fraction > 0:
         torch.manual_seed(42)
@@ -33,7 +34,7 @@ def get_mnist_dataloader(
     else:
         dataset = raw_dataset
 
-    return Dataloader(
+    return DataLoader(
         dataset=dataset,
         batch_size=batch_size,
         num_workers=num_workers,
@@ -48,9 +49,9 @@ def get_train_loader(
     num_workers: int,
     labeled: bool = True,
     unlabeled_fraction: float = 0,
-) -> Dataloader:
+) -> DataLoader:
     msg = f"Invalid Unlabeled Fraction requested. unlabeled_fraction: {unlabeled_fraction}"
-    assert not labeled and unlabeled_fraction > 0, msg
+    assert labeled or unlabeled_fraction > 0, msg
     if unlabeled_fraction == 0:
         return get_mnist_dataloader(train=True, batch_size=batch_size, num_workers=num_workers)
     else:
@@ -64,5 +65,5 @@ def get_train_loader(
         )
 
 
-def get_validation_loader(batch_size: int, num_workers: int) -> Dataloader:
+def get_validation_loader(batch_size: int, num_workers: int) -> DataLoader:
     return get_mnist_dataloader(train=False, batch_size=batch_size, num_workers=num_workers)
