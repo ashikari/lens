@@ -1,7 +1,7 @@
 import torch
-from torchvision.datasets import MNIST
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader, Subset
+from torchvision.datasets import MNIST
 
 
 def get_mnist_dataloader(
