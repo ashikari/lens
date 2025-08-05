@@ -1,10 +1,14 @@
+import argparse
 from typing import Optional
 
 import torch
 from tqdm import tqdm
 
+import wandb
 from dataloader import get_train_loader, get_validation_loader
 from simple_cnn import CNN_CONFIGS, SimpleCNN
+
+wandb.login()
 
 
 class Trainer:
@@ -49,6 +53,7 @@ class Trainer:
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=1e-3)
 
     def train(self):
+        wandb.watch(self.model, log="all", log_freq=self.log_interval)
         total_steps_per_epoch = len(self.train_loader)
         total_steps = self.num_epochs * total_steps_per_epoch
         global_step = 0
@@ -125,6 +130,23 @@ class Trainer:
         return self.criterion(predictions, labels)
 
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--batch_size", type=int, default=1)
+    parser.add_argument("--num_epochs", type=int, default=1)
+    parser.add_argument("--use_gpu", action="store_true", help="Use GPU for training if available")
+    parser.add_argument("--disable_wandb", action="store_true", help="Disable Weights & Biases logging")
+    args = parser.parse_args()
+    return args
+
+
 if __name__ == "__main__":
-    trainer = Trainer(batch_size=64, num_epochs=20)
-    trainer.train()
+    args = parse_args()
+    with wandb.init(
+        project="mnist",
+        config=args,
+        mode="disabled" if args.disable_wandb else "online",
+    ):
+        config = wandb.config
+        trainer = Trainer(batch_size=config.batch_size, num_epochs=config.num_epochs)
+        trainer.train()
