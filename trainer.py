@@ -1,9 +1,9 @@
 from typing import Optional
 
 import torch
+import wandb
 from tqdm import tqdm
 
-import wandb
 from dataloader import get_train_loader, get_validation_loader
 from simple_cnn import CNN_CONFIGS, SimpleCNN
 

@@ -2,6 +2,7 @@ import argparse
 from typing import Optional
 
 import wandb
+
 from simple_cnn import CNN_CONFIGS
 from trainer import Trainer
 
