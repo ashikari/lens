@@ -12,7 +12,7 @@ Brushing off the rust on my bare bones ML modeling with some MNIST experiments.
 - [x] Load MNIST
 - [x] Visualize MNIST
 - [x] Train CNN on MNIST Full
-- [] Incorporate W&B
+- [x] Incorporate W&B
 - [x] Partition MNIST Training (static)
 - [] Build multi-training loop for psuedo labels
 - [] Build VAE for MNIST reconstruction
