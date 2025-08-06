@@ -74,7 +74,6 @@ def get_transforms(
         if train and augment:
             return transforms.Compose(
                 [
-                    transforms.RandomCrop(config.input_size, padding=4),
                     transforms.RandomHorizontalFlip(),
                     transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
                     transforms.ToTensor(),
